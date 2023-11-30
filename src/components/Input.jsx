@@ -5,16 +5,24 @@ import { Alert, Box, Button, TextField } from "@mui/material";
 import { addTask } from "../Redux/slices/Tasks";
 
 function Input() {
-  const { register, handleSubmit, reset } = useForm();
-  const [showError, setShowError] = React.useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    clearErrors,
+    formState: { errors },
+    } = useForm()
+  const [showError, setShowError] = React.useState(false)
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
     if (!data.title || !data.description) {
-      setShowError(true);
-      setTimeout(() => {
-        setShowError(false);
-      }, 4000);
+      setError("title", { type: "required", message: "Title is required" });
+      setError("description", {
+        type: "required",
+        message: "Description is required",
+      });
       return;
     }
 
@@ -26,15 +34,20 @@ function Input() {
     };
 
     dispatch(addTask(newTask));
-
     reset();
+    clearErrors(["title", "description"]);
   };
 
   return (
     <>
-      {showError && (
+      {errors.title && (
         <Alert variant="filled" severity="error">
-          Please enter a task
+          {errors.title.message}
+        </Alert>
+      )}
+      {errors.description && (
+        <Alert variant="filled" severity="error">
+          {errors.description.message}
         </Alert>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +62,7 @@ function Input() {
             label="Title"
             fullWidth
             margin="normal"
-            {...register("title", { required: true })}
+            {...register("title", { required: "Title is required" })}
           />
           <TextField
             label="Description"
@@ -57,7 +70,9 @@ function Input() {
             multiline
             rows={4}
             margin="normal"
-            {...register("description", { required: true })}
+            {...register("description", {
+              required: "Description is required",
+            })}
           />
           <Button type="submit" variant="contained" color="primary">
             Add Task
