@@ -3,8 +3,11 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Alert, Box, Button, TextField } from "@mui/material";
 import { addTask } from "../Redux/slices/Tasks";
+import { useTranslation } from "react-i18next";
 
 function Input() {
+    const { t } = useTranslation();
+
   const {
     register,
     handleSubmit,
@@ -13,15 +16,13 @@ function Input() {
     clearErrors,
     formState: { errors },
     } = useForm()
-  const [showError, setShowError] = React.useState(false)
   const dispatch = useDispatch();
-
   const onSubmit = (data) => {
     if (!data.title || !data.description) {
-      setError("title", { type: "required", message: "Title is required" });
+      setError("title", { type: "required", message: t("Titleisrequired") });
       setError("description", {
         type: "required",
-        message: "Description is required",
+        message: t("Descriptionisrequired"),
       });
       return;
     }
@@ -59,23 +60,23 @@ function Input() {
           }}
         >
           <TextField
-            label="Title"
+            label={t("title")}
             fullWidth
             margin="normal"
-            {...register("title", { required: "Title is required" })}
+            {...register("title", { required: t("Titleisrequired") })}
           />
           <TextField
-            label="Description"
+            label={t("Description")}
             fullWidth
             multiline
             rows={4}
             margin="normal"
             {...register("description", {
-              required: "Description is required",
+              required: t("Descriptionisrequired"),
             })}
           />
           <Button type="submit" variant="contained" color="primary">
-            Add Task
+            {t("buttonAddTask")}
           </Button>
         </Box>
       </form>

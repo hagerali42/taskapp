@@ -4,8 +4,10 @@ import { Modal, IconButton, TextField, Button, Box } from "@mui/material";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { updateTask } from "../Redux/slices/Tasks";
 import { Close } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 function EditeTask({ task, isOpen, onClose }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [updatedTitle, setUpdatedTitle] = useState(task.title);
   const [updatedDescription, setUpdatedDescription] = useState(
@@ -43,14 +45,14 @@ function EditeTask({ task, isOpen, onClose }) {
           <Close />
         </IconButton>
         <TextField
-          label="Title"
+          label={t("title")}
           fullWidth
           margin="normal"
           value={updatedTitle}
           onChange={(e) => setUpdatedTitle(e.target.value)}
         />
         <TextField
-          label="Description"
+          label={t("Description")}
           fullWidth
           multiline
           rows={4}
@@ -59,7 +61,7 @@ function EditeTask({ task, isOpen, onClose }) {
           onChange={(e) => setUpdatedDescription(e.target.value)}
         />
         <Button onClick={handleUpdateTask} variant="contained" color="primary">
-          Update Task
+          {t("buttonUpdateTask")}
         </Button>
       </Box>
     </Modal>

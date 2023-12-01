@@ -1,0 +1,9 @@
+{
+  "title": "العنوان",
+  "Description": "وصف المهمة",
+  "buttonAddTask": "اضافه المهمة",
+  "buttonUpdateTask": "تعديل المهمة",
+  "header":"برنامج بسيط للمهام",
+  "language": "اللغة",
+  "welcome_message": "اهلا بكم"
+}
