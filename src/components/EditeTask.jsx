@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Modal, IconButton, TextField, Button, Box, InputLabel, Divider } from "@mui/material";
+import { Modal, IconButton, TextField, Button, Box, InputLabel, Divider, Typography } from "@mui/material";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { updateTask } from "../Redux/slices/Tasks";
 import { Close } from "@mui/icons-material";
@@ -51,43 +51,21 @@ function EditeTask({ task, isOpen, onClose }) {
         >
           <Close />
         </IconButton>
-        <InputLabel
-          shrink
-          htmlFor="title-input"
-          sx={{
-            direction: direction,
-            position: "relative",
-            left: direction === "rtl" ? "auto" : "0",
-            right: direction === "rtl" ? "0" : "auto",
-            mb: 1,
-            fontSize: "1.5rem",
-          }}
-          size="xl"
-        >
-          {t("title")}
-        </InputLabel>
+        <Typography>{t("updateTask")}</Typography>
         <TextField
           dir={t("languageDirection")}
           fullWidth
           margin="normal"
           value={updatedTitle}
           onChange={(e) => setUpdatedTitle(e.target.value)}
-        />
-        <InputLabel
-          shrink
-          htmlFor="description-input"
-          sx={{
-            direction: direction,
-            position: "relative",
-            left: direction === "rtl" ? "auto" : "0",
-            right: direction === "rtl" ? "0" : "auto",
-            mb: 1,
-            mt: 2,
-            fontSize: "1.5rem",
+          InputProps={{
+            style: {
+              fontSize: "1rem",
+              color: "gray",
+            },
+            placeholder: t("title"),
           }}
-        >
-          {t("Description")}
-        </InputLabel>
+        />
         <TextField
           fullWidth
           dir={t("languageDirection")}
@@ -96,6 +74,13 @@ function EditeTask({ task, isOpen, onClose }) {
           margin="normal"
           value={updatedDescription}
           onChange={(e) => setUpdatedDescription(e.target.value)}
+          InputProps={{
+            style: {
+              fontSize: "1rem",
+              color: "gray",
+            },
+            placeholder: t("Description"),
+          }}
         />
         <Button onClick={handleUpdateTask} variant="contained" color="primary">
           {t("buttonUpdateTask")}

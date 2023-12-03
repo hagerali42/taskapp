@@ -6,5 +6,6 @@
   "buttonUpdateTask": "تعديل المهمة",
   "header": "برنامج بسيط للمهام",
   "language": "اللغة",
-  "welcome_message": "اهلا بكم"
+  "welcome_message": "اهلا بكم",
+  "updateTask":"تعديل المهمة"
 }

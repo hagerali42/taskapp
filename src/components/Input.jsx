@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Alert, Box, Button, InputLabel, TextField } from "@mui/material";
+import { Alert, Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import { addTask } from "../Redux/slices/Tasks";
 import { useTranslation } from "react-i18next";
 
@@ -64,43 +64,19 @@ function Input() {
             alignItems: "center",
           }}
         >
-          <InputLabel
-            shrink
-            htmlFor="title-input"
-            sx={{
-              direction: direction,
-              position: "relative",
-              left: direction === "rtl" ? "auto" : "0",
-              right: direction === "rtl" ? "0" : "auto",
-              mb: 1,
-              fontSize: "1.5rem",
-            }}
-            size="xl"
-          >
-            {t("title")}
-          </InputLabel>
           <TextField
             fullWidth
             margin="normal"
             id="title-input"
             {...register("title", { required: t("Title is required") })}
-          />
-
-          <InputLabel
-            shrink
-            htmlFor="description-input"
-            sx={{
-              direction: direction,
-              position: "relative",
-              left: direction === "rtl" ? "auto" : "0",
-              right: direction === "rtl" ? "0" : "auto",
-              mb: 1,
-              mt: 2,
-              fontSize: "1.5rem",
+            InputProps={{
+              style: {
+                fontSize: "1rem",
+                color: "gray",
+              },
+              placeholder: t("title"),
             }}
-          >
-            {t("Description")}
-          </InputLabel>
+          />
           <TextField
             fullWidth
             multiline
@@ -110,6 +86,13 @@ function Input() {
             {...register("description", {
               required: t("Description is required"),
             })}
+            InputProps={{
+              style: {
+                fontSize: "1rem",
+                color: "gray",
+              },
+              placeholder: t("Description"),
+            }}
           />
           <Button
             type="submit"

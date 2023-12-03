@@ -9,5 +9,6 @@
   "buttonUpdateTask": "Update Task ",
   "header": "ToDo Simple App",
   "Titleisrequired": "Title is required",
-  "Descriptionisrequired": "Description is required"
+  "Descriptionisrequired": "Description is required",
+  "updateTask": "Update Task"
 }
