@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Alert, Box, Button, TextField } from "@mui/material";
+import { Alert, Box, Button, InputLabel, TextField } from "@mui/material";
 import { addTask } from "../Redux/slices/Tasks";
 import { useTranslation } from "react-i18next";
 
 function Input() {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
+  const direction = t("languageDirection");
 
   const {
     register,
@@ -15,7 +16,7 @@ function Input() {
     setError,
     clearErrors,
     formState: { errors },
-    } = useForm()
+  } = useForm();
   const dispatch = useDispatch();
   const onSubmit = (data) => {
     if (!data.title || !data.description) {
@@ -57,25 +58,65 @@ function Input() {
             bgcolor: "white",
             p: 4,
             borderRadius: "8px",
+            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
+          <InputLabel
+            shrink
+            htmlFor="title-input"
+            sx={{
+              direction: direction,
+              position: "relative",
+              left: direction === "rtl" ? "auto" : "0",
+              right: direction === "rtl" ? "0" : "auto",
+              mb: 1,
+              fontSize: "1.5rem",
+            }}
+            size="xl"
+          >
+            {t("title")}
+          </InputLabel>
           <TextField
-            label={t("title")}
             fullWidth
             margin="normal"
-            {...register("title", { required: t("Titleisrequired") })}
+            id="title-input"
+            {...register("title", { required: t("Title is required") })}
           />
+
+          <InputLabel
+            shrink
+            htmlFor="description-input"
+            sx={{
+              direction: direction,
+              position: "relative",
+              left: direction === "rtl" ? "auto" : "0",
+              right: direction === "rtl" ? "0" : "auto",
+              mb: 1,
+              mt: 2,
+              fontSize: "1.5rem",
+            }}
+          >
+            {t("Description")}
+          </InputLabel>
           <TextField
-            label={t("Description")}
             fullWidth
             multiline
             rows={4}
             margin="normal"
+            id="description-input"
             {...register("description", {
-              required: t("Descriptionisrequired"),
+              required: t("Description is required"),
             })}
           />
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{ mt: 3 }}
+          >
             {t("buttonAddTask")}
           </Button>
         </Box>

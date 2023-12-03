@@ -1,11 +1,13 @@
 {
   "language": "Language",
+  "languageDirection": "ltr",
+
   "welcome_message": "Welcome",
   "title": "title",
   "Description": "Description",
   "buttonAddTask": "Add Task",
   "buttonUpdateTask": "Update Task ",
-  "header":"ToDo Simple App",
-  "Titleisrequired":"Title is required",
-  "Descriptionisrequired":"Description is required"
+  "header": "ToDo Simple App",
+  "Titleisrequired": "Title is required",
+  "Descriptionisrequired": "Description is required"
 }
